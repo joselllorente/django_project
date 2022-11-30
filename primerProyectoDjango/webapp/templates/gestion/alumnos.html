@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Alumnos</title>
+</head>
+<body>
+<form>
+    <fieldset>
+        <legend>Prueba de datalist</legend>
+        <label>Buscar: <input type="text" name="agenda" list="agenda" />
+        <datalist id="agenda">
+            {% for alumno in listado_alumnos %}
+                <option value="{{alumno.nombre}}"></option>
+            {% endfor %}
+        </datalist>
+        </label>
+    </fieldset>
+</form>
+
+
+    {% for alumno in listado_alumnos %}
+        <p>El alumno {{alumno.nombre}} {{alumno.apellidos}} tiene el DNI {{alumno.dni}}</p>
+    {% endfor %}
+
+    <a href="{% url 'inicio' %}">Inicio</a>
+</body>
+</html>
