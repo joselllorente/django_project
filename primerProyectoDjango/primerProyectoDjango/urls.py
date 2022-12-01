@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path
 
 from webapp.views import bienvenido, despedida, listar_alumnos
-from deportes.views import deportes, listar_selecciones
+from deportes.views import deportes, listar_selecciones, aniadir_seleccion
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,4 +26,5 @@ urlpatterns = [
     path('deportes/', deportes, name="deportes"),
     path('alumnos/listar_alumnos/', listar_alumnos, name="listado_alumnos"),
     path('deportes/futbol/listado-selecciones', listar_selecciones, name="listado_selecciones"),
+    path('deportes/futbol/aniadir-seleccion', aniadir_seleccion, name="aniadir_seleccion"),
 ]

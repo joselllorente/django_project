@@ -20,6 +20,7 @@
         </label>
     </fieldset>
     <input type="hidden" name="titulo" value="{{titulo_tabla}}">
+    <input type="hidden" name="action" value="filtrar">
     <input type="submit" value="Filtrar"/>
 </form>
 
@@ -43,6 +44,7 @@
 
 
 </table>
-
+<a href="{% url 'deportes' %}">Pagina Anterior</a>
+<a href="aniadir-seleccion">Añadir Selección</a>
 </body>
 </html>
