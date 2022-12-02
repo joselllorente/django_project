@@ -16,9 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from clientes.views import add_client
+from clientes.views import add_client, delete_client_template, delete_client
 from webapp.views import bienvenido, despedida, listar_alumnos
-from deportes.views import deportes, listar_selecciones, aniadir_seleccion
+from deportes.views import deportes, listar_selecciones, aniadir_seleccion, listar_jugadores, nuevo_jugador, \
+    delete_jugador, update_jugador
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -29,4 +30,11 @@ urlpatterns = [
     path('deportes/futbol/listado-selecciones', listar_selecciones, name="listado_selecciones"),
     path('deportes/futbol/aniadir-seleccion', aniadir_seleccion, name="aniadir_seleccion"),
     path('clientes/add', add_client, name="clientes-add"),
+    path('clientes/delete_template', delete_client_template, name="clientes_del_template"),
+    path('clientes/delete/<int:id>', delete_client, name="client_del"),
+    path('deportes/futbol/listado-jugadores/', listar_jugadores, name="jugadores"),
+    path('deportes/futbol/nuevo-jugador/', nuevo_jugador, name="nuevo_jugador"),
+    path('deportes/futbol/delete-jugador/<int:id>', delete_jugador, name="del_jugador"),
+    path('deportes/futbol/update-jugador/<int:id>', update_jugador, name="update_jugador"),
+    path('deportes/futbol/listado-jugadores/<str:order>', listar_jugadores),
 ]

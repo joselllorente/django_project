@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Jugadores</title>
+</head>
+<body>
+    <h1>Lista de Jugadores</h1>
+    <!-- FILTROS -->
+    <form action="{% url 'jugadores' %}" method="POST">
+        {%csrf_token%}
+        <fieldset>
+            <legend>Filtros</legend>
+            <label>Nacionalidad:
+                <input type="text" name="nacionalidad" id="nacionalidad">
+            </label>
+            <label>Equipo:
+                <input type="text" name="equipo" id="equipo">
+            </label>
+            <label>Posición:
+                <input type="text" name="posicion" id="posicion">
+            </label>
+            <!--<input type="hidden" name="action" value="filtrar">-->
+            <button type="submit">Filtrar</button>
+        </fieldset>
+    </form>
+
+    <!-- DATOS -->
+    <table border="1" width="100%">
+
+        <thead>
+            <tr>
+                <th onclick="order(this)">Nombre</th>
+                <th onclick="order(this)">Equipo</th>
+                <th onclick="order(this)">Edad</th>
+                <th onclick="order(this)">Nacionalidad</th>
+                <th onclick="order(this)">Posicion</th>
+                <th onclick="order(this)">Acción</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for jugador in jugadores %}
+            <tr>
+                <td>{{jugador.nombre}}</td>
+                <td>{{jugador.equipo}}</td>
+                <td>{{jugador.edad}}</td>
+                <td>{{jugador.nacionalidad}}</td>
+                <td>{{jugador.posicion}}</td>
+                <td>
+                    <a href="/deportes/futbol/delete-jugador/{{jugador.id}}">Eliminar</a>
+                    <a href="/deportes/futbol/update-jugador/{{jugador.id}}">Editar</a>
+                </td>
+            </tr>
+            {%endfor%}
+        </tbody>
+
+    </table>
+    <p><a href="{% url 'nuevo_jugador' %}">Añadir jugador</a></p>
+
+<script>
+    direccion = ""
+    function order(element){
+        ordenacion = location.href.split("/")[location.href.split("/").length - 1]
+        if (ordenacion != element.innerHTML.toLowerCase()) location.href = "/deportes/futbol/listado-jugadores/" + element.innerHTML.toLowerCase()
+        else location.href = "/deportes/futbol/listado-jugadores/" + "-" + element.innerHTML.toLowerCase()
+    }
+</script>
+
+</body>
+</html>

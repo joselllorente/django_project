@@ -1,7 +1,7 @@
 from _json import make_encoder
 
 from django.forms import modelform_factory
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
 from clientes.models import Cliente
 
@@ -31,3 +31,22 @@ def add_client(request):
 
     contexto = {"cliente_form": cliente_form, "mensaje": mensaje}
     return render(request, "add_client.html", contexto)
+
+def delete_client_template(request):
+    if request.method == 'POST':
+        id = request.POST['id_cliente']
+        #cliente = Cliente.objects.get(pk=id)
+        cliente = get_object_or_404(Cliente,pk=id)
+        print(f"CLiente a eliminar desde formulario {id}")
+        cliente.delete()
+        print("Cliente borrado")
+
+    return render(request, "delete_client.html")
+
+def delete_client(request, id):
+    print(f"Cliente a eliminar {id}")
+    cliente = get_object_or_404(Cliente, pk=id)
+    cliente.delete()
+    print("Cliente borrado")
+
+    return render(request, "delete_client.html")

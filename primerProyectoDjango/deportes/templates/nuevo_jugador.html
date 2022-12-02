@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>Nuevo Jugador</h1>
+    <table>
+    <form method="post" action="{% url 'nuevo_jugador' %}">
+        {%csrf_token%}
+
+        {{jugador_form}}
+        <input type="hidden" name="id" value="{{id}}">
+        <input type="submit" name="action" value="guardar">
+
+    </form>
+    </table>
+    <p><a href="{% url 'jugadores' %}">Volver</a></p>
+</body>
+</html>
